@@ -1,0 +1,42 @@
+[
+  {
+    "rfp_id": "1_electrical_101",
+    "contractor_id": 101,
+    "status": "received",
+    "quote_amount": 29200,
+    "response_date": "2024-02-15T14:30:00Z",
+    "notes": "Detailed quote with timeline - 3 weeks completion"
+  },
+  {
+    "rfp_id": "1_plumbing_102",
+    "contractor_id": 102,
+    "status": "received", 
+    "quote_amount": 23800,
+    "response_date": "2024-02-16T09:15:00Z",
+    "notes": "Competitive pricing, includes premium fixtures"
+  },
+  {
+    "rfp_id": "2_electrical_111",
+    "contractor_id": 111,
+    "status": "sent",
+    "quote_amount": null,
+    "response_date": null,
+    "notes": "RFP sent, awaiting response"
+  },
+  {
+    "rfp_id": "3_HVAC_103",
+    "contractor_id": 103,
+    "status": "received",
+    "quote_amount": 35400,
+    "response_date": "2024-02-18T11:45:00Z",
+    "notes": "High-efficiency system quote - may be over budget"
+  },
+  {
+    "rfp_id": "3_framing_105",
+    "contractor_id": 105,
+    "status": "overdue",
+    "quote_amount": null,
+    "response_date": null,
+    "notes": "Follow-up needed - quote due 2 days ago"
+  }
+]

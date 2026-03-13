@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Maple Ridge Custom Home",
+    "address": "2247 Maple Ridge Drive, Austin, TX",
+    "trades_needed": ["electrical", "plumbing", "HVAC", "framing", "roofing"],
+    "drawings": "Plan Set A-2024-001",
+    "budget": 485000,
+    "status": "planning",
+    "created_date": "2024-01-15T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Oak Grove Renovation",
+    "address": "1834 Oak Grove Lane, Austin, TX",
+    "trades_needed": ["electrical", "plumbing", "drywall", "flooring", "painting"],
+    "drawings": "Renovation Set R-2024-002",
+    "budget": 125000,
+    "status": "active",
+    "created_date": "2024-01-20T14:15:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Riverside Luxury Build",
+    "address": "5689 Riverside Blvd, Austin, TX",
+    "trades_needed": ["electrical", "plumbing", "HVAC", "concrete", "framing", "roofing", "landscaping"],
+    "drawings": "Luxury Plan L-2024-003",
+    "budget": 750000,
+    "status": "rfp_sent",
+    "created_date": "2024-02-01T09:45:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Hill Country Estate",
+    "address": "12345 Hill Country Road, Dripping Springs, TX",
+    "trades_needed": ["electrical", "plumbing", "HVAC", "concrete", "framing", "roofing", "drywall", "flooring"],
+    "drawings": "Estate Plan E-2024-004",
+    "budget": 950000,
+    "status": "planning",
+    "created_date": "2024-02-05T11:20:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Downtown Condo Remodel",
+    "address": "789 Congress Ave Unit 12B, Austin, TX",
+    "trades_needed": ["electrical", "plumbing", "drywall", "flooring", "painting"],
+    "drawings": "Condo Remodel C-2024-005",
+    "budget": 85000,
+    "status": "quotes_received",
+    "created_date": "2024-02-10T16:00:00Z"
+  }
+]

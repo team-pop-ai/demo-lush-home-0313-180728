@@ -1,0 +1,92 @@
+[
+  {
+    "project_id": 1001,
+    "trade": "electrical",
+    "contractor": "Austin Premier Electric",
+    "price": 28500,
+    "sqft": 2400,
+    "date": "2023-11-15",
+    "project_type": "custom_home"
+  },
+  {
+    "project_id": 1002,
+    "trade": "plumbing",
+    "contractor": "Hill Country Plumbing Co",
+    "price": 22300,
+    "sqft": 2400,
+    "date": "2023-11-20",
+    "project_type": "custom_home"
+  },
+  {
+    "project_id": 1003,
+    "trade": "HVAC",
+    "contractor": "Texas HVAC Solutions",
+    "price": 18750,
+    "sqft": 2400,
+    "date": "2023-12-01",
+    "project_type": "custom_home"
+  },
+  {
+    "project_id": 1004,
+    "trade": "framing",
+    "contractor": "Precision Framing LLC",
+    "price": 45200,
+    "sqft": 3200,
+    "date": "2023-12-10",
+    "project_type": "luxury_home"
+  },
+  {
+    "project_id": 1005,
+    "trade": "roofing",
+    "contractor": "Crown Roofing Systems",
+    "price": 31200,
+    "sqft": 2800,
+    "date": "2023-12-15",
+    "project_type": "custom_home"
+  },
+  {
+    "project_id": 1006,
+    "trade": "electrical",
+    "contractor": "Reliable Electric Services",
+    "price": 31500,
+    "sqft": 2800,
+    "date": "2024-01-05",
+    "project_type": "renovation"
+  },
+  {
+    "project_id": 1007,
+    "trade": "plumbing",
+    "contractor": "Fast Track Plumbing",
+    "price": 15800,
+    "sqft": 1800,
+    "date": "2024-01-08",
+    "project_type": "renovation"
+  },
+  {
+    "project_id": 1008,
+    "trade": "drywall",
+    "contractor": "Elite Drywall & Texture",
+    "price": 12400,
+    "sqft": 2400,
+    "date": "2024-01-12",
+    "project_type": "renovation"
+  },
+  {
+    "project_id": 1009,
+    "trade": "flooring",
+    "contractor": "Austin Flooring Experts",
+    "price": 18900,
+    "sqft": 2100,
+    "date": "2024-01-18",
+    "project_type": "custom_home"
+  },
+  {
+    "project_id": 1010,
+    "trade": "painting",
+    "contractor": "Perfect Paint Pros",
+    "price": 8750,
+    "sqft": 2400,
+    "date": "2024-01-25",
+    "project_type": "renovation"
+  }
+]

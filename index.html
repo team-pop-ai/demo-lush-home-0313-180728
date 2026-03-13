@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lush Home - AI RFP Manager</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, sans-serif; background: #faf9f5; color: #333; }
+        
+        .header {
+            background: #ffffff;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 { color: #d97757; font-size: 24px; font-weight: 600; }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 69px);
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: #ffffff;
+            border-right: 1px solid #e5e5e5;
+            overflow-y: auto;
+        }
+        
+        .sidebar h2 {
+            padding: 24px;
+            font-size: 18px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .project-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .project-item:hover { background: #faf9f5; }
+        .project-item.active { background: #d97757; color: white; }
+        
+        .main-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .project-header {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .trades-section {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .btn {
+            background: #d97757;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover { background: #c86649; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .btn-secondary {
+            background: #6b7280;
+            margin-left: 8px;
+        }
+        
+        .rfp-section {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .loading { color: #666; font-style: italic; }
+        
+        .rfp-content {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 16px 0;
+        }
+        
+        .contractor-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        
+        .contractor-item {
+            padding: 12px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .contractor-item.selected {
+            background: #d97757;
+            color: white;
+            border-color: #d97757;
+        }
+        
+        .quote-status {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .status-item {
+            padding: 16px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+        }
+        
+        .status-sent { border-left: 4px solid #3b82f6; }
+        .status-received { border-left: 4px solid #10b981; }
+        .status-overdue { border-left: 4px solid #ef4444; }
+        
+        .anomaly { background: #fef2f2; border-color: #ef4444; }
+        .anomaly-high { background: #fffbeb; border-color: #f59e0b; }
+        
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Lush Home - AI RFP Manager</h1>
+        <div>AI-Powered Construction Management</div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2>Active Projects</h2>
+            <div id="projects-list">Loading projects...</div>
+        </div>
+        
+        <div class="main-content">
+            <div id="project-details" class="hidden">
+                <div class="project-header">
+                    <h2 id="project-name">Project Name</h2>
+                    <p id="project-address"></p>
+                    <p id="project-budget"></p>
+                </div>
+                
+                <div class="trades-section">
+                    <h3>Trade Requirements</h3>
+                    <div id="trades-list"></div>
+                </div>
+                
+                <div class="rfp-section">
+                    <h3>Generate RFP</h3>
+                    <p>Select a trade to generate AI-powered RFP emails:</p>
+                    <div id="rfp-controls"></div>
+                    <div id="rfp-content" class="hidden"></div>
+                    <div id="contractor-selection" class="hidden"></div>
+                </div>
+                
+                <div class="quote-status">
+                    <h3>Quote Status & Analysis</h3>
+                    <div id="quote-status-grid" class="status-grid"></div>
+                </div>
+            </div>
+            
+            <div id="welcome-message">
+                <div class="project-header">
+                    <h2>Welcome to AI RFP Manager</h2>
+                    <p>Select a project from the sidebar to get started with AI-powered RFP management.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let projects = [];
+        let currentProject = null;
+        let currentTrade = null;
+        let selectedContractors = new Set();
+        
+        async function loadProjects() {
+            try {
+                const response = await fetch('/api/projects');
+                const data = await response.json();
+                projects = data.projects;
+                renderProjects();
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+            }
+        }
+        
+        function renderProjects() {
+            const container = document.getElementById('projects-list');
+            container.innerHTML = projects.map(project => `
+                <div class="project-item" data-project-id="${project.id}" onclick="selectProject(${project.id})">
+                    <div style="font-weight: 600; margin-bottom: 4px;">${project.name}</div>
+                    <div style="font-size: 12px; color: #666;">${project.status} • ${project.trades_needed?.length || 0} trades</div>
+                </div>
+            `).join('');
+        }
+        
+        async function selectProject(projectId) {
+            try {
+                document.querySelectorAll('.project-item').forEach(el => el.classList.remove('active'));
+                document.querySelector(`[data-project-id="${projectId}"]`).classList.add('active');
+                
+                const response = await fetch(`/project/${projectId}`);
+                const data = await response.json();
+                currentProject = data.project;
+                
+                document.getElementById('welcome-message').classList.add('hidden');
+                document.getElementById('project-details').classList.remove('hidden');
+                
+                renderProjectDetails(data);
+            } catch (error) {
+                console.error('Failed to load project:', error);
+            }
+        }
+        
+        function renderProjectDetails(data) {
+            document.getElementById('project-name').textContent = data.project.name;
+            document.getElementById('project-address').textContent = data.project.address || 'Address TBD';
+            document.getElementById('project-budget').textContent = `Budget: $${data.project.budget?.toLocaleString() || 'TBD'}`;
+            
+            const tradesContainer = document.getElementById('trades-list');
+            tradesContainer.innerHTML = (data.project.trades_needed || []).map(trade => `
+                <div class="trade-item">
+                    <div>
+                        <strong>${trade}</strong>
+                        <div style="font-size: 12px; color: #666; margin-top: 4px;">
+                            ${getTradeStatus(data.project.id, trade)}
+                        </div>
+                    </div>
+                    <button class="btn" onclick="generateRFP('${trade}')">Generate RFP</button>
+                </div>
+            `).join('');
+            
+            renderQuoteStatus(data.rfp_responses);
+        }
+        
+        function getTradeStatus(projectId, trade) {
+            // Mock status based on project progress
+            const statuses = ['Not started', 'RFPs sent', 'Quotes received', 'Analysis complete'];
+            return statuses[Math.floor(Math.random() * statuses.length)];
+        }
+        
+        async function generateRFP(trade) {
+            currentTrade = trade;
+            const contentDiv = document.getElementById('rfp-content');
+            contentDiv.classList.remove('hidden');
+            contentDiv.innerHTML = '<div class="loading">Generating RFP with AI...</div>';
+            
+            try {
+                const response = await fetch('/generate-rfp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        project_id: currentProject.id,
+                        trade: trade
+                    })
+                });
+                
+                const data = await response.json();
+                
+                contentDiv.innerHTML = `
+                    <div class="rfp-content">${data.rfp_content}</div>
+                    <button class="btn" onclick="loadContractors('${trade}')">Select Contractors & Send</button>
+                `;
+                
+            } catch (error) {
+                contentDiv.innerHTML = '<div style="color: red;">Failed to generate RFP</div>';
+            }
+        }
+        
+        async function loadContractors(trade) {
+            try {
+                const response = await fetch(`/api/subcontractors/${trade}`);
+                const data = await response.json();
+                
+                const selectionDiv = document.getElementById('contractor-selection');
+                selectionDiv.classList.remove('hidden');
+                selectionDiv.innerHTML = `
+                    <h4>Select Contractors (${data.subcontractors.length} available)</h4>
+                    <div class="contractor-list">
+                        ${data.subcontractors.map(contractor => `
+                            <div class="contractor-item" data-contractor-id="${contractor.id}" onclick="toggleContractor(${contractor.id})">
+                                <div style="font-weight: 600;">${contractor.name}</div>
+                                <div style="font-size: 12px; color: #666;">
+                                    Rating: ${contractor.rating}/5 • ${contractor.response_time_avg}d avg response
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <button class="btn" onclick="sendRFPs()" id="send-btn" disabled>Send to Selected (0)</button>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Failed to load contractors:', error);
+            }
+        }
+        
+        function toggleContractor(contractorId) {
+            const element = document.querySelector(`[data-contractor-id="${contractorId}"]`);
+            
+            if (selectedContractors.has(contractorId)) {
+                selectedContractors.delete(contractorId);
+                element.classList.remove('selected');
+            } else {
+                selectedContractors.add(contractorId);
+                element.classList.add('selected');
+            }
+            
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.textContent = `Send to Selected (${selectedContractors.size})`;
+            sendBtn.disabled = selectedContractors.size === 0;
+        }
+        
+        async function sendRFPs() {
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.textContent = 'Sending...';
+            sendBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/send-rfps', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        project_id: currentProject.id,
+                        trade: currentTrade,
+                        contractor_ids: Array.from(selectedContractors)
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(`RFPs sent successfully to ${data.sent_count} contractors!`);
+                    selectedContractors.clear();
+                    document.getElementById('contractor-selection').classList.add('hidden');
+                    document.getElementById('rfp-content').classList.add('hidden');
+                    
+                    // Refresh project data
+                    selectProject(currentProject.id);
+                }
+            } catch (error) {
+                alert('Failed to send RFPs');
+            }
+            
+            sendBtn.textContent = 'Send RFPs';
+            sendBtn.disabled = false;
+        }
+        
+        function renderQuoteStatus(responses) {
+            const container = document.getElementById('quote-status-grid');
+            
+            if (!responses || responses.length === 0) {
+                container.innerHTML = '<div>No RFPs sent yet. Generate and send RFPs to see quote status here.</div>';
+                return;
+            }
+            
+            container.innerHTML = responses.map(response => {
+                const statusClass = response.status === 'sent' ? 'status-sent' : 
+                                   response.status === 'received' ? 'status-received' : 'status-overdue';
+                
+                return `
+                    <div class="status-item ${statusClass}">
+                        <div style="font-weight: 600;">Contractor #${response.contractor_id}</div>
+                        <div style="margin: 8px 0;">
+                            Status: <strong>${response.status}</strong>
+                        </div>
+                        ${response.quote_amount ? `
+                            <div>Quote: $${response.quote_amount.toLocaleString()}</div>
+                            <button class="btn" style="margin-top: 8px;" onclick="analyzePricing(${response.quote_amount})">
+                                Analyze Pricing
+                            </button>
+                        ` : ''}
+                        <div style="font-size: 12px; color: #666; margin-top: 8px;">
+                            ${response.notes || 'Awaiting response'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        async function analyzePricing(quoteAmount) {
+            try {
+                const response = await fetch('/analyze-pricing', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        project_id: currentProject.id,
+                        trade: currentTrade || 'general',
+                        quote_amount: quoteAmount
+                    })
+                });
+                
+                const data = await response.json();
+                
+                const anomalyClass = data.is_anomaly ? 'anomaly' : '';
+                alert(`Pricing Analysis:\n\nAnomaly Score: ${data.anomaly_score}%\nAverage Price: $${data.avg_price?.toLocaleString()}\n\n${data.analysis}`);
+                
+            } catch (error) {
+                alert('Failed to analyze pricing');
+            }
+        }
+        
+        // Auto-refresh quote status
+        setInterval(() => {
+            if (currentProject) {
+                selectProject(currentProject.id);
+            }
+        }, 30000);
+        
+        // Initialize
+        loadProjects();
+    </script>
+</body>
+</html>

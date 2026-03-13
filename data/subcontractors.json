@@ -1,0 +1,122 @@
+[
+  {
+    "id": 101,
+    "name": "Austin Premier Electric",
+    "email": "bids@austinpremierelectric.com",
+    "phone": "(512) 555-0101",
+    "trades": ["electrical"],
+    "preference_tier": 1,
+    "response_time_avg": 2,
+    "rating": 4.8
+  },
+  {
+    "id": 102,
+    "name": "Hill Country Plumbing Co",
+    "email": "estimates@hcplumbing.com",
+    "phone": "(512) 555-0102",
+    "trades": ["plumbing"],
+    "preference_tier": 1,
+    "response_time_avg": 3,
+    "rating": 4.6
+  },
+  {
+    "id": 103,
+    "name": "Texas HVAC Solutions",
+    "email": "quotes@texashvac.com",
+    "phone": "(512) 555-0103",
+    "trades": ["HVAC"],
+    "preference_tier": 1,
+    "response_time_avg": 4,
+    "rating": 4.7
+  },
+  {
+    "id": 104,
+    "name": "Solid Foundation Concrete",
+    "email": "bids@solidfoundation.com",
+    "phone": "(512) 555-0104",
+    "trades": ["concrete"],
+    "preference_tier": 1,
+    "response_time_avg": 5,
+    "rating": 4.5
+  },
+  {
+    "id": 105,
+    "name": "Precision Framing LLC",
+    "email": "estimates@precisionframing.com",
+    "phone": "(512) 555-0105",
+    "trades": ["framing"],
+    "preference_tier": 1,
+    "response_time_avg": 3,
+    "rating": 4.9
+  },
+  {
+    "id": 106,
+    "name": "Crown Roofing Systems",
+    "email": "quotes@crownroofing.com",
+    "phone": "(512) 555-0106",
+    "trades": ["roofing"],
+    "preference_tier": 1,
+    "response_time_avg": 7,
+    "rating": 4.4
+  },
+  {
+    "id": 107,
+    "name": "Elite Drywall & Texture",
+    "email": "bids@elitedrywall.com",
+    "phone": "(512) 555-0107",
+    "trades": ["drywall"],
+    "preference_tier": 1,
+    "response_time_avg": 4,
+    "rating": 4.3
+  },
+  {
+    "id": 108,
+    "name": "Austin Flooring Experts",
+    "email": "estimates@austinflooring.com",
+    "phone": "(512) 555-0108",
+    "trades": ["flooring"],
+    "preference_tier": 1,
+    "response_time_avg": 6,
+    "rating": 4.6
+  },
+  {
+    "id": 109,
+    "name": "Perfect Paint Pros",
+    "email": "quotes@perfectpaint.com",
+    "phone": "(512) 555-0109",
+    "trades": ["painting"],
+    "preference_tier": 1,
+    "response_time_avg": 3,
+    "rating": 4.2
+  },
+  {
+    "id": 110,
+    "name": "Verde Landscaping",
+    "email": "bids@verdelandscape.com",
+    "phone": "(512) 555-0110",
+    "trades": ["landscaping"],
+    "preference_tier": 1,
+    "response_time_avg": 8,
+    "rating": 4.7
+  },
+  {
+    "id": 111,
+    "name": "Reliable Electric Services",
+    "email": "bids@reliableelectric.com",
+    "phone": "(512) 555-0111",
+    "trades": ["electrical"],
+    "preference_tier": 2,
+    "response_time_avg": 4,
+    "rating": 4.1
+  },
+  {
+    "id": 112,
+    "name": "Fast Track Plumbing",
+    "email": "estimates@fasttrackplumbing.com",
+    "phone": "(512) 555-0112",
+    "trades": ["plumbing"],
+    "preference_tier": 2,
+    "response_time_avg": 5,
+    "rating": 4.0
+  }
+]
